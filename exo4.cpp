@@ -34,7 +34,7 @@ int main()
     srandom(12345);
 
     int j, dim = 2;
-    float epsi = 1.0f;
+    float epsi = 2.0f;
 
     int i, nmarkov = 100000;
     float x[dim], y[dim];

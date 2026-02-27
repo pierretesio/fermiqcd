@@ -121,13 +121,15 @@ int main()
 
     ofstream outJK("jackknife.dat");
 
-    float totalSum = 0.0f;
-    for (int i = 1; i <= nsample; i++) totalSum += store_func[i];
-
     for (int B = minBlock; B <= maxBlock; B += stepBlock)
     {
         int nb = nsample / B;
         if (nb < 2) break;
+
+        int Nuse = nb * B;
+
+        float totalSum = 0.0f;
+        for (int i = 1; i <= Nuse; i++) totalSum += store_func[i];
 
         float *blockSum = new float[nb];
         for (int k = 0; k < nb; k++) blockSum[k] = 0.0f;
@@ -146,7 +148,7 @@ int main()
 
         for (int k = 0; k < nb; k++)
         {
-            float m = (totalSum - blockSum[k]) / (nsample - B);
+            float m = (totalSum - blockSum[k]) / (Nuse - B);
             mleave[k] = m;
             meanJK += m;
         }
@@ -162,7 +164,7 @@ int main()
 
         float errJK = sqrt(v);
 
-        outJK << B << " " << errJK << " " << nb << endl;
+        outJK << B << " " << errJK << " " << nb << " " << Nuse << endl;
 
         delete[] blockSum;
         delete[] mleave;
