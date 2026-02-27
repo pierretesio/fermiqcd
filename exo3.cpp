@@ -5,9 +5,9 @@
 
 using namespace std;
 
-ofstream outfile1("calcul_Nd_small.dat");
-ofstream outfile2("sample_small.dat");
-ofstream outfile3("walk_2d_small.dat");
+ofstream outfile1("calcul_Nd.dat");
+ofstream outfile2("sample.dat");
+ofstream outfile3("walk_2d.dat");
 
 float myrandom(float a, float b)
 {
